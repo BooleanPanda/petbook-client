@@ -1,0 +1,315 @@
+html {
+    font-size: 16px;
+}
+$primaryDark : #2c698d;
+$primaryLight : #60c0c0;
+$textWhite : #ffffff;
+$textLight : #fefcbf;
+$textPrimaryDark : #2a6fdb;
+$textSecondaryDark : #122c91;
+
+@mixin flex ($direction,$justify,$align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+.container {
+    min-height: 100vh;
+    width: 100%;
+    background-color: $primaryLight;
+    @include flex(column, space-between, center)
+}
+.text {
+    margin: 5px;
+    &-small {
+        font-size: 0.75rem;
+    }
+    &-normal {
+        font-size: 1rem;
+    }
+    &-big {
+        font-size: 1.45rem;
+    }
+    &-bald {
+        font-weight: 600;
+    }
+    &-white {
+        color: $textWhite;
+    }
+    &-light {
+        color: $textLight;
+    }
+    &-prmdark {
+        color: $textPrimaryDark;
+    }
+    &-scndark {
+        color: $textSecondaryDark;
+    }
+    &-highlight {
+        color:rgb(0, 4, 255);
+        font-weight: 600;
+    }
+}
+.pic {
+    &-xxs {
+        height: 25px;
+        width: 25px;
+    }
+    &-xs {
+        height: 50px;
+        width: 50px;
+    }
+    &-s {
+        height: 100px;
+        width: 100px;
+    }
+    &-m {
+        height: 200px;
+        width: 200px;
+    }
+    &-l {
+        height: 300px;
+        width: 300px;
+    }
+}
+.link {
+    text-decoration: none;
+    @include flex(row, space-between, center);
+
+    &:hover {
+        color: $textLight;
+    }
+    &_icon {
+        margin: 5px;
+    }
+}
+.button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    outline: none;
+    margin: 0.5em;
+    @include flex(row, space-between, center);
+
+    &:hover {
+        color: $textLight;
+    }
+    &_icon {
+        margin: 5px;
+    }
+}
+.header {
+    height: 50px;
+    width: 100%;
+    @include flex(row, space-between, center);
+    background-color: $primaryDark;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    &__title {
+        margin: 0 1.5em;
+    }
+    &__profile {
+        position: relative;
+        width: 150px;
+        @include flex(column, space-around, center);
+        &_button {
+            &:hover {
+                color: $textLight;
+            }
+            &_icon {
+                height: 1.2rem;
+                width: 1.2rem;
+                margin: 5px;
+            }
+        }
+        &_info {
+            position: absolute;
+            top: 48px;
+            right: 0px;
+            height: 300px;
+            width: 150px;
+            background-color: $primaryDark;
+            @include flex(column, space-around, center);
+
+            &_pic {
+                border: 1px solid $textWhite;
+                border-radius: 10%;
+            }
+        }
+    }
+}
+.footer {
+    height: 50px;
+    width: 100%;
+    background-color: $primaryDark;
+    @include flex(row, space-between, center);
+
+    &_signature {
+        @include flex (row, space-around, center);
+        margin-left: 20px;
+        &_link {
+            height: 25px;
+            width: 25px;
+            background-repeat: no-repeat;
+            background-size: 25px 25px;
+            background-position: 50%;
+            border: 1px solid $textWhite;
+            border-radius: 20%;
+            background-image: url('../img/frg.jpg');
+        }
+    }
+}
+.section {
+    min-height: calc(100vh - 100px);
+    padding-top: 50px;
+    width: 100%;
+    max-width: 100vw;
+    @include flex(column, space-around, center);
+    flex-wrap: nowrap;
+    &-center {
+        @include flex(column, center, center);
+    }
+}
+.allUsers {
+    &__item {
+        height: 200px;
+        width: 300px;
+        margin: 20px;
+        @include flex(column, center, center);
+    }
+}
+.albums {
+    &__item {
+        @include flex(column, space-between, center);
+
+        &>img {
+            border-radius: 10px;
+        }
+    }
+}
+
+.messages {
+    &_wrapper {
+        max-width: 1000px;
+        width: 100%;
+        height: calc(100vh - 100px);
+        @include flex(row, center, center);
+    }
+    &__aside {
+        width: 200px;
+        height: 100%;
+        border-left: 2px solid $primaryDark;
+        border-right: 2px solid $primaryDark;
+        @include flex(column, space-between, center);
+
+        &__dialogs {
+            height: calc(100% - 75px);
+            width: 100%;
+            @include flex(column, flex-start, center);
+            &_item {
+                height: 50px;
+                width: 100%;
+                background-color: $textWhite;
+                border-top: 2px solid $primaryDark;
+                border-bottom: 2px solid $primaryDark;
+                @include flex(row, space-between, flex-start);
+
+                &_info {
+                    cursor: pointer;
+                }
+
+                &_button {
+                    cursor: pointer;
+                    border: none;
+                    background: none;
+                    outline: none;
+                    margin: 5px;
+                    &:hover {
+                        color: red;
+                    }
+                }
+                &:hover {
+                    background: $textLight;
+                }
+            }
+        }
+        &__settings {
+            border-top: 2px solid $primaryDark;
+            height: 75px;
+            width: 100%;
+        }
+    }
+    &__chat {
+        min-width: 250px;
+        height: 100%;
+        width: 100%;
+        border-right: 2px solid $primaryDark;
+        @include flex(column, center, center);
+
+        &_output {
+            background-color: rgb(184, 151, 167);
+            width: 100%;
+            height: calc(100% - 50px);
+        }
+
+        &_placeholder {
+            height: 50%;
+            width: 50%;
+            max-height: 400px;
+            max-width: 400px;
+            background-image: url('../img/chatPlaceholder.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+
+}
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ripple div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes lds-ripple {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+  .lol {
+      &::placeholder {
+        text-transform: capitalize;
+      }
+  }
+  .form {
+      @include flex(column, flex-start, center);
+      &_input {
+        &::placeholder {
+            text-transform: capitalize;
+        }
+    }
+  }
